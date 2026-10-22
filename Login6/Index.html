@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="Index.html">Voltar</a><hr>
+    </header>
+    <main>
+        
+        <h1>Login 6</h1>
+        <form id="form">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario">
+            <label for="senha">Senha:</label>
+            <input type="text" id="senha">
+            <br>
+            <button type="button" id="botao-entrar">Entrar</button>
+        </form>
+        <p id="mensagem"></p>
+        <p id="porcentagem">0%</p>
+        <progress id="barra" value="0" max="100" hidden></progress>
+        <p id="porcentagem" hidden>0%</p>
+    <script>
+         const botao = document.querySelector("#botao-entrar");
+         botao.addEventListener("click",  async function() {
+         const usuario = document.querySelector("#usuario").value;
+              const usuarios = [
+                { usuario: "jonas", senha: "123"},
+                { usuario: "maria", senha: "456"},
+                { usuario: "joao", senha: "789"}
+            ];
+            const senha = document.querySelector("#senha").value;
+            const mensagem = document.querySelector("#mensagem");
+            const barra = document.querySelector("#barra");
+            const porcentagem = document.querySelector("#porcentagem");
+            let encontrado = false;
+            for (let i = 0; i < usuarios.length; i++) {
+            if (usuario === usuarios[i].usuario && senha === usuarios[i].senha) {
+
+                encontrado = true;
+                break;
+            }
+        } 
+            if (encontrado) 
+
+               {     let progresso = 0;
+               
+                    
+            
+            barra.hidden = false;
+            porcentagem.hidden = false;
+            mensagem.hidden = true;
+
+            while (progresso < 100) {
+                progresso = progresso + 1
+                barra.value = progresso;
+                porcentagem.textContent = progresso + "%";
+                await new Promise(resolve => setTimeout(resolve,50));
+            }
+             window.location.href = "usuario.html";
+
+        } else if (usuario === "") {mensagem.textContent = "Campo de usuário nao pode ficar vazio!";
+
+        } else if (senha === "") {mensagem.textContent = "Campo de senha nao pode ficar vazio!";
+
+        } else {  mensagem.textContent = "Usuário ou senha incorretos! Tente novamente.";}
+
+    });   
+                
+     </script>
+    </main>
+    <footer>
+        <p> Todos os direitos reservados </p>
+    </footer>
+</body>
+</html>
